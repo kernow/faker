@@ -9,6 +9,7 @@ require 'faker/phone_number'
 require 'faker/version'
 
 require 'extensions/array'
+require 'extensions/hash'
 require 'extensions/object'
 
 module Faker

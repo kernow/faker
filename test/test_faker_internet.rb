@@ -18,6 +18,17 @@ class TestFakerInternet < Test::Unit::TestCase
     assert @tester.user_name.match(/[a-z]+((_|\.)[a-z]+)?/)
   end
   
+  def test_user_name_with_join_options
+    assert @tester.user_name(nil, :join => []).match(/^[a-z]+$/)
+    assert @tester.user_name(nil, :join => [' ']).match(/^[a-z]+ ?[a-z]+$/)
+    assert @tester.user_name(nil, :join => %w(* + = &)).match(/^[a-z]+[*+=&]?[a-z]+$/)
+  end
+  
+  def test_user_name_with_format_options
+    assert @tester.user_name(nil, :format => :first).match(/^[a-z]+$/)
+    assert @tester.user_name(nil, :join => [' '], :format => :first_last).match(/^[a-z]+ ?[a-z]+$/)
+  end
+  
   def test_user_name_with_arg
     assert @tester.user_name('bo peep').match(/(bo(_|\.)peep|peep(_|\.)bo)/)
   end

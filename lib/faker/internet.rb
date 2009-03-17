@@ -9,16 +9,25 @@ module Faker
         [ user_name(name), %w(gmail.com yahoo.com hotmail.com).rand ].join('@')
       end
       
-      def user_name(name = nil)
-        return name.scan(/\w+/).shuffle.join(%w(. _).rand).downcase if name
+      def user_name(name = nil, options = {})
+        default_options = {:join => %w(. _), :format => :rand}
+        options = default_options.merge(options)
         
-        [ 
-          Proc.new { Name.first_name.gsub(/\W/, '').downcase },
-          Proc.new { 
+        return name.scan(/\w+/).shuffle.join(options[:join].rand).downcase if name
+        
+        names = {
+          :first => Proc.new { Name.first_name.gsub(/\W/, '').downcase },
+          :first_last => Proc.new { 
             [ Name.first_name, Name.last_name ].map {|n| 
               n.gsub(/\W/, '')
-            }.join(%w(. _).rand).downcase }
-        ].rand.call
+            }.join(options[:join].rand).downcase }
+        }
+        
+        if options[:format] == :rand
+          names.rand.call
+        else
+          names[options[:format]].call
+        end
       end
       
       def domain_name
