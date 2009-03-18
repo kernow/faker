@@ -1,6 +1,6 @@
 require 'faker/version'
 
-AUTHOR = 'Benjamin Curtis'  # can also be an array of Authors
+AUTHOR = ['Benjamin Curtis', 'Jamie Dyer']  # can also be an array of Authors
 EMAIL = "benjamin.curtis@gmail.com"
 DESCRIPTION = "A port of Perl's Data::Faker - Generates fake names, phone numbers, etc."
 GEM_NAME = 'faker' # what ppl will type to install your gem
