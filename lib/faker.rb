@@ -12,6 +12,9 @@ require 'extensions/array'
 require 'extensions/hash'
 require 'extensions/object'
 
+require 'data/regular_names'
+require 'data/super_hero_villain_names'
+
 module Faker
   def self.numerify(number_string)
     number_string.gsub(/#/) { rand(10).to_s }
