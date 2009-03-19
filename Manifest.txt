@@ -6,6 +6,8 @@ Rakefile
 config/hoe.rb
 config/requirements.rb
 faker.tmproj
+lib/data/regular_names.rb
+lib/data/super_hero_villain_names.rb
 lib/extensions/array.rb
 lib/extensions/hash.rb
 lib/extensions/object.rb
